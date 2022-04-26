@@ -8,9 +8,6 @@
   "parserOptions": {
     "requireConfigFile": "false"
   },
-  "babelOptions": {
-    "configFile": "./.babelrc"
-  },
   "ecmaVersion": 2018,
   "sourceType": "module",
 
