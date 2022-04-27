@@ -1,31 +1,41 @@
-import React from "react";
-import styles from "./TodoItem.module.css"
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import styles from './TodoItem.module.css';
 
-function TodoItem(props) {
+class TodoItem extends PureComponent {
+  render() {
+    const { todo, handleChangeProps, deleteTodoProps } = this.props;
 
-  const completedStyle = {
-    fontStyle: "italic",
-    color: "#595959",
-    opacity: 0.4,
-    textDecoration: "line-through",
+    const completedStyle = {
+      fontStyle: 'italic',
+      color: '#595959',
+      opacity: 0.4,
+      textDecoration: 'line-through',
+    };
+
+    return (
+      <li className={styles.item}>
+        <input
+          className={styles.checkbox}
+          type="checkbox"
+          checked={todo.completed}
+          onChange={() => handleChangeProps(todo.id)}
+        />
+        <button type="button" onClick={() => deleteTodoProps(todo.id)}>
+          Delete
+        </button>
+        <span style={todo.completed ? completedStyle : null}>
+          {todo.title}
+        </span>
+      </li>
+    );
   }
-
-  const { completed, id, title } = props.todo
-
-  return (
-    
-     <li className={styles.item}>
-    <input
-      type="checkbox"
-      className={styles.checkbox}
-      checked={completed}
-      onChange={() => props.handleChangeProps(id)}
-    />
-    <button onClick={() => props.deleteTodoProps(id)}>Delete</button>
-    <span style={completed ? completedStyle : null}>{title}</span>
-  </li>
-  )
-
 }
 
-export default TodoItem
+TodoItem.propTypes = {
+  todo: PropTypes.instanceOf(Object).isRequired,
+  handleChangeProps: PropTypes.func.isRequired,
+  deleteTodoProps: PropTypes.func.isRequired,
+};
+
+export default TodoItem;
