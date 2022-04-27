@@ -6,32 +6,19 @@
   },
   "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "requireConfigFile": "false"
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
   },
-"extends": [
-  "eslint:recommended",
-  "plugin:react/recommended"
-],
-"plugins": [
-  "react"
-],
-"rules": {
-  "react/jsx-filename-extension": [
-    "warn",
-    {
-      "extensions": [
-        ".js",
-        ".jsx"
-      ]
-    }
-  ],
-  "react/react-in-jsx-scope": "off",
-  "import/no-unresolved": "off",
-  "no-shadow": "off",
-  "react/prop-types": "off"
-},
-"ignorePatterns": [
-  "dist/",
-  "build/"
-]
+  "extends": ["plugin:react/recommended"],
+  "plugins": ["react"],
+  "rules": {
+    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "react/react-in-jsx-scope": "off",
+    "import/no-unresolved": "off",
+    "no-shadow": "off"
+  },
+  "ignorePatterns": ["dist/", "build/"]
 }
